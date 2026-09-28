@@ -9,6 +9,7 @@ public class ReceiptFrame extends JFrame {
         this.setSize(420, 420);
         this.setTitle("Money reciept");
         this.setResizable(false);
+        this.getContentPane().setBackground(new Color(0xF8F1FA));
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new BorderLayout());
@@ -31,6 +32,7 @@ public class ReceiptFrame extends JFrame {
         //receipt body
         JPanel receiptPanel= new JPanel();
         receiptPanel.setLayout(new BoxLayout(receiptPanel, BoxLayout.Y_AXIS));
+        receiptPanel.setBackground(new Color(0xF8F1FA));
         receiptPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 10, 15));
 
         double total=0;
@@ -41,8 +43,8 @@ public class ReceiptFrame extends JFrame {
             total+=iteamTotal;
 
             JLabel itemLabel= new JLabel(cartItem.medicine.name+" | "+
-                    cartItem.strength+" | Qty: "+ cartItem.quantity+ "| price: "+
-                    cartItem.medicine.price+ " taka");
+                    cartItem.strength+" | Qty: "+ cartItem.quantity+ "| Unit Price: "+
+                    cartItem.medicine.price+ "| price: "+ iteamTotal+ " taka");
 
             itemLabel.setFont(new Font("Times New Roman", Font.PLAIN, 12));
             receiptPanel.add(itemLabel);

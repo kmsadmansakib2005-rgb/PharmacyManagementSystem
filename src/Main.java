@@ -5,6 +5,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
+
         ArrayList<CartItem> cart= new ArrayList<>();
 
         ImageIcon image = new ImageIcon(Main.class.getResource("img.png"));//title image
@@ -86,7 +87,6 @@ public class Main {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(6, 1, 3, 3));
         buttonPanel.setBackground(new Color(0xF3EDF6));
-
 
 
 
@@ -417,54 +417,108 @@ public class Main {
 
         card.button.addActionListener(e -> {
 
-            String strength =
-                    card.strengthBox.getSelectedItem().toString();
+            String strength = card.strengthBox.getSelectedItem().toString();
+            int quantity = (int) card.quantitySpinner.getValue();
 
-            int quantity =
-                    (int) card.quantitySpinner.getValue();
 
-            CartItem item =
-                    new CartItem(medicine, strength, quantity);
+            if (quantity > medicine.stock) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Not enough stock available!",
+                        "Stock Error",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
 
+            // Create cart item
+            CartItem item = new CartItem(medicine, strength, quantity);
+
+            // Add to cart
             cart.add(item);
+
+            // Decrease stock
+            medicine.stock -= quantity;
+
+            // Update stock display
+            card.stockLabel.setText("Stock: " + medicine.stock);
 
             if (cart.size() == 1) {
                 cartContent.remove(emptyCart);
             }
+
             double total = 0;
 
             for (CartItem cartItem : cart) {
                 total += cartItem.medicine.price * cartItem.quantity;
             }
 
-            totalLabel.setText("Total: " + (int) total+" taka");
+            totalLabel.setText("Total: " + (int) total + " taka");
 
-           // cartContent.removeAll();
+            double itemTotal = item.quantity * item.medicine.price;
+
+            JPanel itemPanel = new JPanel(new BorderLayout());
 
             JLabel itemLabel = new JLabel(
                     item.medicine.name +
                             " | " +
                             item.strength +
                             " | Qty: " +
-                            item.quantity
+                            item.quantity +
+                            "| Unit Price: " +
+                            item.medicine.price +
+                            "| Total: " +
+                            itemTotal +
+                            " Taka"
             );
 
             itemLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-            cartContent.add(itemLabel);
+            JButton removeButton = new JButton("Remove");
+            removeButton.setPreferredSize(new Dimension(95, 22));
+            removeButton.setFocusable(false);
 
+            removeButton.setBackground(new Color(0xE11D48));
+            removeButton.setForeground(Color.WHITE);
+
+            JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            centerPanel.setBackground(new Color(0xF8F1FA));
+
+            centerPanel.add(itemLabel);
+            centerPanel.add(removeButton);
+
+            itemPanel.add(centerPanel, BorderLayout.CENTER);
+
+            removeButton.addActionListener(event -> {
+
+                cart.remove(item);
+                cartContent.remove(itemPanel);
+
+                // Return stock when item is removed
+                item.medicine.stock += item.quantity;
+
+                // Update stock display
+                card.stockLabel.setText("Stock: " + item.medicine.stock);
+
+                double newTotal = 0;
+
+                for (CartItem cartItem : cart) {
+                    newTotal += cartItem.medicine.price * cartItem.quantity;
+                }
+
+                totalLabel.setText("Total: " + (int) newTotal + " taka");
+
+                if (cart.isEmpty()) {
+                    cartContent.add(emptyCart);
+                }
+
+                cartContent.revalidate();
+                cartContent.repaint();
+            });
+
+            cartContent.add(itemPanel);
             cartContent.revalidate();
             cartContent.repaint();
         });
-    }
-    static void selectCategory(JButton selectedButton, JButton[] categoryButtons) {
-
-        for (JButton button : categoryButtons) {
-            button.setBackground(new Color(0xF8F1FA));
-            button.setForeground(Color.BLACK);
-        }
-
-        selectedButton.setBackground(new Color(0x542064));
-        selectedButton.setForeground(Color.WHITE);
     }
 }

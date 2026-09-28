@@ -6,6 +6,7 @@ public class MedicineCard extends JPanel {
     JButton button;
     JComboBox<String> strengthBox;
     JSpinner quantitySpinner;
+    JLabel stockLabel;
 
     MedicineCard(Medicine medicine) {
 
@@ -61,11 +62,14 @@ public class MedicineCard extends JPanel {
         //price
         JLabel price = new JLabel("Price: ৳" + medicine.price);
 
+         stockLabel= new JLabel("Stock: "+medicine.stock);
+
         medicineName.setAlignmentX(Component.CENTER_ALIGNMENT);
         medicineName.setHorizontalAlignment(SwingConstants.CENTER);
         category.setAlignmentX(Component.CENTER_ALIGNMENT);
         strengthBox.setAlignmentX(Component.CENTER_ALIGNMENT);
         price.setAlignmentX(Component.CENTER_ALIGNMENT);
+        stockLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
         this.button = new JButton("Add to cart");
@@ -94,6 +98,8 @@ public class MedicineCard extends JPanel {
         this.add(price);
         this.add(Box.createVerticalStrut(5));
 
+        this.add(stockLabel);
+        this.add(Box.createVerticalStrut(5));
         this.add(button);
         this.add(Box.createVerticalStrut(5));
 
