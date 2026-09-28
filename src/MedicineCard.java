@@ -3,9 +3,13 @@ import java.awt.*;
 
 public class MedicineCard extends JPanel {
 
+    JButton button;
+    JComboBox<String> strengthBox;
+    JSpinner quantitySpinner;
+
     MedicineCard(Medicine medicine) {
 
-       this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.setBorder(
                 BorderFactory.createCompoundBorder(
@@ -14,8 +18,7 @@ public class MedicineCard extends JPanel {
                 )
         );
 
-        this.setBackground(Color.WHITE);
-
+        this.setBackground(new Color(0xF5EFF7));
 
         // Medicine image
         ImageIcon originalImage = new ImageIcon(
@@ -43,14 +46,20 @@ public class MedicineCard extends JPanel {
         );
 
         JLabel category = new JLabel("Category: " + medicine.category);
-        //JLabel strength = new JLabel("Strength: " + medicine.strength);
 
-        String[] strengths= {medicine.strength};
-        JComboBox<String> strengthBox= new JComboBox<>(strengths);
+        //strengtth selection
+        this.strengthBox = new JComboBox<>(medicine.strengths);
         strengthBox.setMaximumSize(new Dimension(80, 20));
 
-        JLabel price = new JLabel("Price: $" + medicine.price);
+        //quantity selection
+        JLabel quantitySelector = new JLabel("Quantity: ");
+        this.quantitySpinner = new JSpinner(
+                new SpinnerNumberModel(1, 1, 50, 1));
+        quantitySpinner.setBackground(new Color(0xF5EFF7));
+        quantitySpinner.setMaximumSize(new Dimension(60, 25));
 
+        //price
+        JLabel price = new JLabel("Price: ৳" + medicine.price);
 
         medicineName.setAlignmentX(Component.CENTER_ALIGNMENT);
         medicineName.setHorizontalAlignment(SwingConstants.CENTER);
@@ -58,9 +67,20 @@ public class MedicineCard extends JPanel {
         strengthBox.setAlignmentX(Component.CENTER_ALIGNMENT);
         price.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+
+        this.button = new JButton("Add to cart");
+        button.setFocusable(false);
+        button.setBackground(new Color(0xE11D48));
+        button.setForeground(Color.WHITE);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setMaximumSize(new Dimension(120, 30));
+
         // adding to the frame
+
+        this.add(Box.createVerticalGlue());
+
         this.add(imageLabel);
-        add(Box.createVerticalStrut(8));
+        this.add(Box.createVerticalStrut(8));
 
         this.add(medicineName);
         this.add(Box.createVerticalStrut(5));
@@ -72,13 +92,20 @@ public class MedicineCard extends JPanel {
         this.add(Box.createVerticalStrut(5));
 
         this.add(price);
-
-        JButton button= new JButton("Add to cart");
-        button.setFocusable(false);
-        button.setBackground(new Color(13, 95, 210));
-        button.setForeground(Color.WHITE);
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.add(Box.createVerticalStrut(5));
 
         this.add(button);
+        this.add(Box.createVerticalStrut(5));
+
+        JPanel quantityPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        quantityPanel.setBackground(Color.WHITE);
+
+        quantityPanel.add(quantitySelector);
+        quantityPanel.add(quantitySpinner);
+
+        this.add(quantityPanel);
+
+        this.add(Box.createVerticalGlue());
+
     }
 }

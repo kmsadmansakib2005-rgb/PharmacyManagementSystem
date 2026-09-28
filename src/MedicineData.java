@@ -1,16 +1,16 @@
 public class MedicineData {
-  static Medicine paracetamol = new Medicine(
+    static Medicine paracetamol = new Medicine(
             "Paracetamol",
             "General",
-            "500 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             20,
             "paracetamol.png"
     );
 
-   static Medicine aspirin = new  Medicine(
+    static Medicine aspirin = new Medicine(
             "Aspirin",
             "Heart",
-            "75 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             15,
             "aspirin.png"
     );
@@ -18,7 +18,7 @@ public class MedicineData {
     static Medicine atorvastatin = new Medicine(
             "Atorvastatin",
             "Heart",
-            "10 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             30,
             "ator.png"
     );
@@ -26,7 +26,7 @@ public class MedicineData {
     static Medicine amlodipine = new Medicine(
             "Amlodipine",
             "Heart",
-            "5 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             25,
             "amplo.png"
     );
@@ -34,7 +34,7 @@ public class MedicineData {
     static Medicine salbutamol = new Medicine(
             "Salbutamol",
             "Lung",
-            "100 mcg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             20,
             "salbutamol.png"
     );
@@ -42,7 +42,7 @@ public class MedicineData {
     static Medicine montelukast = new Medicine(
             "Montelukast",
             "Lung",
-            "10 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             350,
             "montelukast.png"
     );
@@ -50,7 +50,7 @@ public class MedicineData {
     static Medicine budesonide = new Medicine(
             "Budesonide",
             "Lung",
-            "200 mcg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             40,
             "budesonide.png"
     );
@@ -58,7 +58,7 @@ public class MedicineData {
     static Medicine omeprazole = new Medicine(
             "Omeprazole",
             "Gastric",
-            "20 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             25,
             "omeprazol.png"
     );
@@ -66,7 +66,7 @@ public class MedicineData {
     static Medicine pantoprazole = new Medicine(
             "Pantoprazole",
             "Gastric",
-            "40 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             30,
             "pantoprazole.png"
     );
@@ -74,14 +74,14 @@ public class MedicineData {
     static Medicine famotidine = new Medicine(
             "Famotidine",
             "Gastric",
-            "20 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             25,
             "famotidine.png"
     );
     static Medicine metformin = new Medicine(
             "Metformin",
             "Diabetes",
-            "500 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             20,
             "metformin.png"
     );
@@ -89,7 +89,7 @@ public class MedicineData {
     static Medicine glimepiride = new Medicine(
             "Glimepiride",
             "Diabetes",
-            "2 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             25,
             "glimepiride.png"
     );
@@ -97,7 +97,7 @@ public class MedicineData {
     static Medicine insulin = new Medicine(
             "Insulin",
             "Diabetes",
-            "100 IU",
+            new String[]{"250 IU", "500 IU", "650 IU"},
             50,
             "insulin.png"
     );
@@ -105,7 +105,7 @@ public class MedicineData {
     static Medicine diclofenac = new Medicine(
             "Diclofenac",
             "Orthopedic",
-            "50 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             20,
             "diclofenac.png"
     );
@@ -113,7 +113,7 @@ public class MedicineData {
     static Medicine naproxen = new Medicine(
             "Naproxen",
             "Orthopedic",
-            "250 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             30,
             "naproxen.png"
     );
@@ -121,7 +121,7 @@ public class MedicineData {
     static Medicine calcium = new Medicine(
             "Calcium",
             "Orthopedic",
-            "500 mg",
+            new String[]{"250 mg", "500 mg", "650 mg"},
             25,
             "calcium.png"
     );
